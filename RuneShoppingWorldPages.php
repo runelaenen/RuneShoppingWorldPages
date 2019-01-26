@@ -6,6 +6,7 @@ use Shopware\Bundle\AttributeBundle\Service\CrudService;
 use Shopware\Bundle\AttributeBundle\Service\TypeMapping;
 use Shopware\Components\Plugin;
 use Shopware\Components\Plugin\Context\InstallContext;
+use Shopware\Components\Plugin\Context\UninstallContext;
 use Shopware\Models\Emotion\Emotion;
 
 class RuneShoppingWorldPages extends Plugin
@@ -18,7 +19,6 @@ class RuneShoppingWorldPages extends Plugin
     {
         /** @var CrudService $crudService */
         $crudService = $this->container->get('shopware_attribute.crud_service');
-
         $crudService->update('s_cms_static_attributes',
             'rune_shoppingworldpage',
             'single_selection',
@@ -35,5 +35,20 @@ class RuneShoppingWorldPages extends Plugin
             true);
 
         parent::install($context);
+    }
+
+    /**
+     * @param UninstallContext $context
+     * @throws \Exception
+     */
+    public function uninstall(UninstallContext $context)
+    {
+        /** @var CrudService $crudService */
+        $crudService = $this->container->get('shopware_attribute.crud_service');
+        $crudService->delete("s_cms_static_attributes", "rune_shoppingworldpage");
+
+        $context->scheduleClearCache(UninstallContext::CACHE_LIST_ALL);
+
+        return parent::uninstall($context);
     }
 }

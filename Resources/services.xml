@@ -3,6 +3,9 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="rune_shopping_world_pages.subscriber.shop_page_subscriber" class="RuneShoppingWorldPages\Subscriber\ShopPageSubscriber">
+            <argument type="service" id="emotion_device_configuration"/>
+            <argument>%rune_shopping_world_pages.plugin_dir%</argument>
+
             <tag name="shopware.event_subscriber"/>
         </service>
     </services>

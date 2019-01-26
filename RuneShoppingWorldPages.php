@@ -9,8 +9,14 @@ use Shopware\Components\Plugin\Context\InstallContext;
 use Shopware\Components\Plugin\Context\UninstallContext;
 use Shopware\Models\Emotion\Emotion;
 
+/**
+ * Class RuneShoppingWorldPages
+ * @package RuneShoppingWorldPages
+ */
 class RuneShoppingWorldPages extends Plugin
 {
+    const PAGE_ATTRIBUTE = 'rune_shoppingworldpage';
+
     /**
      * @param InstallContext $context
      * @throws \Exception
@@ -20,7 +26,7 @@ class RuneShoppingWorldPages extends Plugin
         /** @var CrudService $crudService */
         $crudService = $this->container->get('shopware_attribute.crud_service');
         $crudService->update('s_cms_static_attributes',
-            'rune_shoppingworldpage',
+            self::PAGE_ATTRIBUTE,
             'single_selection',
             [
                 'label' => 'Shopping World',
@@ -33,8 +39,6 @@ class RuneShoppingWorldPages extends Plugin
             ],
             null,
             true);
-
-        parent::install($context);
     }
 
     /**
@@ -45,10 +49,8 @@ class RuneShoppingWorldPages extends Plugin
     {
         /** @var CrudService $crudService */
         $crudService = $this->container->get('shopware_attribute.crud_service');
-        $crudService->delete("s_cms_static_attributes", "rune_shoppingworldpage");
+        $crudService->delete("s_cms_static_attributes", self::PAGE_ATTRIBUTE);
 
         $context->scheduleClearCache(UninstallContext::CACHE_LIST_ALL);
-
-        return parent::uninstall($context);
     }
 }

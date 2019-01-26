@@ -6,5 +6,7 @@
             data-controllerUrl="{url module=widgets controller=emotion action=index emotionId=$shoppingWorld.id}"
             data-availableDevices="{$shoppingWorld.devices}">
        </div>
+   {else}
+       {$smarty.block.parent}
    {/if}
 {/block}

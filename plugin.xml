@@ -2,7 +2,7 @@
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.5/engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="en">Shopping World Pages</label>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <copyright>(c) by Rune Laenen</copyright>
     <license>open source</license>
     <link>https://github.com/runelaenen/RuneShoppingWorldPages</link>
